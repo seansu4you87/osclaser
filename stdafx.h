@@ -28,6 +28,7 @@
 #include <ctime>
 #include <iostream>
 #include <cassert>
+#include <string>
 #include <pthread.h>
 
 #define LDDLL_PREFIX extern "C"
@@ -52,4 +53,3 @@
 #include "OscOutboundPacketStream.h"
 #include "OscPrintReceivedElements.h"
 
-// TODO: reference additional headers your program requires here
