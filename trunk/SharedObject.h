@@ -1,0 +1,1 @@
+//SharedObject.h
