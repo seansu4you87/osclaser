@@ -30,3 +30,14 @@ SharedObject * SharedCollection::objectWithID(int objectID)
 {
 	return NULL;
 }
+
+vector<SharedObject*>::iterator SharedCollection::positionOfObjectWithID(int objectID)
+{
+	vector<SharedObject*>::iterator theIterator;
+	for(theIterator = objects.begin(); theIterator != objects.end(); theIterator++)
+	{
+
+	}
+
+	return theIterator;
+}
