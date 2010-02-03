@@ -1,0 +1,1 @@
+//SharedCollection.h
