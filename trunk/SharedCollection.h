@@ -16,5 +16,6 @@ class SharedCollection
 		void removeSharedObject(SharedObject*);
 		SharedObject * objectWithID(int);
 	private:
+		vector<SharedObject*>::iterator positionOfObjectWithID(int);
 		vector<SharedObject*> objects;
 };
