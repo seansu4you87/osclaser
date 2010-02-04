@@ -37,7 +37,7 @@ SharedObject * SharedCollection::objectWithID(int objectID)
 	vector<SharedObject*>::iterator position = positionOfObjectWithID(objectID);
 	if(position != objects.end())
 	{
-		return position;
+		return *position;
 	}
 	
 	return NULL;
