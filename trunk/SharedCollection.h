@@ -1,6 +1,7 @@
 //SharedCollection.h
 #pragma once
 
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -18,4 +19,5 @@ class SharedCollection
 	private:
 		vector<SharedObject*>::iterator positionOfObjectWithID(int);
 		vector<SharedObject*> objects;
+		SharedObject * newObjectForTypeName(string&);
 };
