@@ -24,7 +24,7 @@ void SharedCollection::removeSharedObject(SharedObject * deletedObject)
 
 void SharedCollection::processNewMessage(const osc::ReceivedMessage & m)
 {
-
+	cout << endl << "processing message with type: " << m.AddressPattern();
 }
 
 SharedObject * SharedCollection::newObjectForTypeName(string & objectName)

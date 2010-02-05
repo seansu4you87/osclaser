@@ -8,7 +8,15 @@
 SharedObject::SharedObject()
 {
 	numPoints = 0;
-	points = NULL
+	points = NULL;
+}
+
+SharedObject::~SharedObject()
+{
+	if(points != NULL)
+	{
+		free(points);
+	}
 }
 
 void SharedObject::setFromMessage(const osc::ReceivedMessage& m)

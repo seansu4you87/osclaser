@@ -12,7 +12,8 @@ class SharedObject {
 		string objectName;
 		virtual void setFromMessage(const osc::ReceivedMessage&);
 		SharedObject();
-	private:
+		~SharedObject();
+	protected:
 		LONG * points;
 		int numPoints;
 
