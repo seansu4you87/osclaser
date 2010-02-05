@@ -86,41 +86,7 @@ class LifeController : public OSCLaserController
 	protected:
 		virtual void ProcessMessage(const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint)
 		{
-			cout << endl << "RECEIVED A MESSAGE with type " << m.AddressPattern();
-			if( strcmp( m.AddressPattern(), "/1/fader5" ) == 0 )
-			{
-				osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-				float faderValue;
-
-				args >> faderValue >> osc::EndMessage;
-
-				cout << endl << "Received fader5 value: " << faderValue;
-				
-				currentSizeValue = faderValue;
-				newData = true;
-			}else if( strcmp( m.AddressPattern(), "/1/fader1" ) == 0 )
-			{
-				osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-				float faderValue;
-
-				args >> faderValue >> osc::EndMessage;
-
-				cout << endl << "Received fader1 value: " << faderValue;
-				
-				currentHueValue = faderValue;
-				newData = true;
-			}else if(strcmp( m.AddressPattern(), "/1/fader2" ) == 0 )
-			{
-				osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-				float faderValue;
-
-				args >> faderValue >> osc::EndMessage;
-
-				cout << endl << "Received fader2 value: " << faderValue;
-				
-				currentBrightnessValue = faderValue;
-				newData = true;
-			}
+			collection.processNewMessage(m);	
 		}
 };
 
@@ -128,12 +94,12 @@ int main(int argc, char* argv[])
 {
 	LifeController control;
 	control.initLife();
-	
+	/*
 	if(!control.initLD())
 	{
 		return 1;
 	}
-	
+	*/
 	control.startListeningOnPort(PORT, &control);
     while(true)
 	{

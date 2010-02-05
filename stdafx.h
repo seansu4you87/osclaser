@@ -40,6 +40,7 @@
 //SharedLibrary stuff
 #include "SharedObject.h"
 #include "SharedCollection.h"
+#include "LineObject.h"
 
 //OSC stuff
 #include "IpEndpointName.h"
