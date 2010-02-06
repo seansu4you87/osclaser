@@ -75,14 +75,6 @@ class LifeController : public OSCLaserController
 			currentBrightnessValue = 0;
 		}
 
-		virtual void step()
-		{
-			if(newData)
-			{
-				newData = false;
-				setPoints();
-			}
-		}
 	protected:
 		virtual void ProcessMessage(const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint)
 		{
@@ -103,6 +95,7 @@ int main(int argc, char* argv[])
 	control.startListeningOnPort(PORT, &control);
     while(true)
 	{
+		control.step();
 	}
 	while(true)
     {

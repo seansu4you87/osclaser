@@ -5,16 +5,18 @@
 using namespace std;
 
 class osc::ReceivedMessage;
+struct LaserPoint;
 
 class SharedObject {
 	public:
 		int objectID;
 		string objectName;
 		virtual void setFromMessage(const osc::ReceivedMessage&);
+		virtual void step();
 		SharedObject();
 		~SharedObject();
 	protected:
-		LONG * points;
+		LaserPoint * points;
 		int numPoints;
 
 };

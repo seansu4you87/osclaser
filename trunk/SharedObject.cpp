@@ -9,6 +9,8 @@ SharedObject::SharedObject()
 {
 	numPoints = 0;
 	points = NULL;
+	objectID = 0;
+	objectName = "";
 }
 
 SharedObject::~SharedObject()
@@ -17,6 +19,10 @@ SharedObject::~SharedObject()
 	{
 		free(points);
 	}
+}
+
+void SharedObject::step()
+{
 }
 
 void SharedObject::setFromMessage(const osc::ReceivedMessage& m)
