@@ -14,6 +14,11 @@ OSCLaserController::OSCLaserController()
 {
 }
 
+void OSCLaserController::step()
+{
+	collection.step();
+}
+
 void * asynchronousStartListeningOnPort(void * socketAddr)
 {
 	//cout << "STARTING TO LISTEN";

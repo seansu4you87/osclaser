@@ -227,6 +227,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SharedUtility.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -330,6 +334,10 @@
 			</File>
 			<File
 				RelativePath=".\SharedObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SharedUtility.h"
 				>
 			</File>
 			<File
