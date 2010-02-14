@@ -10,6 +10,8 @@ struct LaserPoint;
 class SharedObject {
 	public:
 		int objectID;
+		int getNumPoints();
+		LaserPoint * pointAt(int);
 		string objectName;
 		virtual void setFromMessage(const osc::ReceivedMessage&);
 		virtual void step();

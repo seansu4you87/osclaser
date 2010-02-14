@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "OSCLaserController.h"
-#include "pthread.h"
-
+#include "LaserController.h"
 #include <iostream>
 #include <cmath>
 #include <cstring>
@@ -21,10 +20,8 @@ void OSCLaserController::step()
 
 void * asynchronousStartListeningOnPort(void * socketAddr)
 {
-	//cout << "STARTING TO LISTEN";
 	UdpListeningReceiveSocket * socketPtr = (UdpListeningReceiveSocket*)socketAddr;
 	socketPtr->RunUntilSigInt();
-	//cout << "STOPPED LISTENING";
 	return socketAddr;
 }
 
@@ -39,4 +36,54 @@ void OSCLaserController::ProcessMessage(const osc::ReceivedMessage& m,
 				const IpEndpointName& remoteEndpoint)
 {
 	cout << endl << "Received message with pattern: " << m.AddressPattern();
+}
+
+void OSCLaserController::setPointsFromCollection()
+{
+	int currentPoint = 0;
+	for(int i = 0; i < collection.objects.size(); i++)
+	{
+		SharedObject * curObject = collection.objects.at(i);
+		for(int j = 0; j < curObject->getNumPoints(); j++)
+		{
+			LaserPoint * curObjectPoint = curObject->pointAt(j);
+
+			LONG laserXCoord = (LONG)(xMin + (xMax - xMin)*curObjectPoint->x);
+			LONG laserYCoord = (LONG)(yMin + (yMax - yMin)*curObjectPoint->y);
+			LONG laserZCoord = (LONG)(curObjectPoint->z);
+			LONG laserFCoord = (LONG)(curObjectPoint->f);
+
+			if(j == 0)
+			{
+				LaserPoints[currentPoint].XCoord = laserXCoord;
+				LaserPoints[currentPoint].YCoord = laserYCoord;
+				LaserPoints[currentPoint].ZCoord = laserZCoord;
+				LaserPoints[currentPoint].FCoord = laserFCoord;
+				LaserPoints[currentPoint].RGBValue = RGB(0, 0, 0);
+				LaserPoints[currentPoint].Status = 0;
+				currentPoint++;
+			}
+
+			LaserPoints[currentPoint].XCoord = laserXCoord;
+			LaserPoints[currentPoint].YCoord = laserYCoord;
+			LaserPoints[currentPoint].ZCoord = laserZCoord;
+			LaserPoints[currentPoint].FCoord = laserFCoord;
+
+			//cout << endl << "wrote point: " << LaserPoints[currentPoint].XCoord << ", " << LaserPoints[currentPoint].YCoord;
+			
+			LaserPoints[currentPoint].RGBValue = RGB(250, 0, 0);
+			//LaserPoints[currentPoint].RGBValue = RGB(curObjectPoint->r, curObjectPoint->g, curObjectPoint->b);
+			// Special flag which tells the laser this is a corner point and also the last point
+			if(j == curObject->getNumPoints() - 1)
+			{
+				LaserPoints[currentPoint].Status = 4096;//corner point
+			}else if(j == 0){
+				LaserPoints[currentPoint].Status = 4096;//not a corner point
+			}else{
+				LaserPoints[currentPoint].Status = 4096;//not a corner point
+			}
+			currentPoint++;
+		}
+
+	}
 }

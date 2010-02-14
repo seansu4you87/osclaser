@@ -86,24 +86,22 @@ int main(int argc, char* argv[])
 {
 	LifeController control;
 	control.initLife();
-	/*
+	
 	if(!control.initLD())
 	{
 		return 1;
 	}
-	*/
+	
 	control.startListeningOnPort(PORT, &control);
-    while(true)
-	{
-		control.step();
-	}
+
 	while(true)
     {
 		control.step();
+		control.setPointsFromCollection();
 		control.writeFrame();
 		control.displayFrame();
         
-        Sleep(10);
+        //Sleep(10);
     }
     
 	control.killLD();

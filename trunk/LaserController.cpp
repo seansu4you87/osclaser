@@ -53,7 +53,7 @@ void LaserController::killLD()
     DisplayFrame(0);
     DisplayUpdate();
 
-	std::cout << "Demonstration finished." << std::endl;
+	std::cout << "LD finished." << std::endl;
     Sleep(2000);
 }
 

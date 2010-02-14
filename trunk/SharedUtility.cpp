@@ -16,6 +16,14 @@ void SharedUtility::StringExplode(string str, string separator, vector<string>* 
     }
 }
 
+void SharedUtility::CopyPointToPoint(LaserPoint * src, LaserPoint * dest)
+{
+	dest->x = src->x;
+	dest->y = src->y;
+	dest->z = src->z;
+	dest->f = src->f;
+}
+
 void SharedUtility::InterpolateBetween(LaserPoint & start, LaserPoint & end, float t, LaserPoint * changed)
 {
 	changed->x = start.x + t*(end.x - start.x);
