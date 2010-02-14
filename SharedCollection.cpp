@@ -171,10 +171,7 @@ void SharedCollection::processNewMessage(const osc::ReceivedMessage & m)
 
 SharedObject * SharedCollection::newObjectForTypeName(string & objectName)
 {
-	if(strcmp(objectName.c_str(), "LObj") == 0)
-	{
-		return new LineObject();
-	}else if(strcmp(objectName.c_str(), "MObj") == 0){
+	if(strcmp(objectName.c_str(), "MObj") == 0){
 		return new MultiPointObject();
 	}else{
 		return new SharedObject();

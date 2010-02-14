@@ -195,10 +195,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LineObject.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\MultiPointObject.cpp"
 				>
 			</File>
@@ -290,10 +286,6 @@
 			</File>
 			<File
 				RelativePath=".\LD2000.lib"
-				>
-			</File>
-			<File
-				RelativePath=".\LineObject.h"
 				>
 			</File>
 			<File

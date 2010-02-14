@@ -41,7 +41,6 @@
 #include "SharedObject.h"
 #include "SharedCollection.h"
 #include "SharedUtility.h"
-#include "LineObject.h"
 #include "ControlPoint.h"
 #include "MultiPointObject.h"
 
