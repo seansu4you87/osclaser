@@ -15,6 +15,7 @@ class SharedObject {
 		string objectName;
 		virtual void setFromMessage(const osc::ReceivedMessage&);
 		virtual void step();
+		void setColor(float r, float g, float b);
 		SharedObject();
 		~SharedObject();
 	protected:

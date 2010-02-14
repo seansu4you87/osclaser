@@ -63,7 +63,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="ws2_32.lib winmm.lib"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;C:\Documents and Settings\Owner\Desktop\pthread&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"

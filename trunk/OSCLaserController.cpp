@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <cstring>
+#include "pthread.h"
 
 using namespace std;
 
@@ -40,6 +41,7 @@ void OSCLaserController::ProcessMessage(const osc::ReceivedMessage& m,
 
 void OSCLaserController::setPointsFromCollection()
 {
+	pthread_mutex_lock(&(collection.accessLock));
 	int currentPoint = 0;
 	for(int i = 0; i < collection.objects.size(); i++)
 	{
@@ -71,19 +73,20 @@ void OSCLaserController::setPointsFromCollection()
 
 			//cout << endl << "wrote point: " << LaserPoints[currentPoint].XCoord << ", " << LaserPoints[currentPoint].YCoord;
 			
-			LaserPoints[currentPoint].RGBValue = RGB(250, 0, 0);
-			//LaserPoints[currentPoint].RGBValue = RGB(curObjectPoint->r, curObjectPoint->g, curObjectPoint->b);
+			//LaserPoints[currentPoint].RGBValue = RGB(250, 0, 0);
+			LaserPoints[currentPoint].RGBValue = RGB(curObjectPoint->r, curObjectPoint->g, curObjectPoint->b);
 			// Special flag which tells the laser this is a corner point and also the last point
 			if(j == curObject->getNumPoints() - 1)
 			{
 				LaserPoints[currentPoint].Status = 4096;//corner point
 			}else if(j == 0){
-				LaserPoints[currentPoint].Status = 4096;//not a corner point
+				LaserPoints[currentPoint].Status = 0;//not a corner point
 			}else{
-				LaserPoints[currentPoint].Status = 4096;//not a corner point
+				LaserPoints[currentPoint].Status = 0;//not a corner point
 			}
 			currentPoint++;
 		}
 
 	}
+	pthread_mutex_unlock(&(collection.accessLock));
 }

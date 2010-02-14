@@ -16,6 +16,7 @@
 SharedCollection::SharedCollection()
 {
 	accessLock = PTHREAD_MUTEX_INITIALIZER;
+	colorCounter = 0;
 }	
 
 void SharedCollection::addSharedObject(SharedObject * newObject)
@@ -101,6 +102,9 @@ void SharedCollection::processNewMessage(const osc::ReceivedMessage & m)
 			if(strcmp(objName.c_str(), MULTI_STRING) == 0)
 			{
 				MultiPointObject * newObj = new MultiPointObject();
+				float r, g, b;
+				SharedCollection::setColorForIndex(colorCounter, r, g, b);
+				newObj->setObjectColor(r, g, b);
 				osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
 				int count = 0;
 				float xVal, yVal;
@@ -120,7 +124,9 @@ void SharedCollection::processNewMessage(const osc::ReceivedMessage & m)
 					count++;
 				}
 				newObj->rebuildPoints();
+				
 				addSharedObject(newObj);
+				colorCounter++;
 			}
 		}else if(strcmp(function.c_str(), DELETE_STRING) == 0)
 		{
@@ -145,6 +151,7 @@ void SharedCollection::processNewMessage(const osc::ReceivedMessage & m)
 					int count = 0;
 					MultiPointObject * theObj;
 					float xVal, yVal;
+					pthread_mutex_lock(&accessLock);
 					while(arg != m.ArgumentsEnd())
 					{
 						if(count == 0)
@@ -162,6 +169,7 @@ void SharedCollection::processNewMessage(const osc::ReceivedMessage & m)
 						count++;
 					}
 					theObj->rebuildPoints();
+					pthread_mutex_unlock(&accessLock);
 				}else{
 				}
 			}
@@ -213,4 +221,46 @@ vector<SharedObject*>::iterator SharedCollection::positionOfObjectWithID(int obj
 	}
 
 	return theIterator;
+}
+
+void SharedCollection::setColorForIndex(int index, float & r, float & g, float & b)
+{
+	switch(index%7)
+	{
+	case 0://blue
+		r = 0;
+		g = 0;
+		b = 255;
+		return;
+	case 1://green
+		r = 0;
+		g = 255;
+		b = 0;
+		return;
+	case 2://red
+		r = 255;
+		g = 0;
+		b = 0;
+		return;
+	case 3://magenta
+		r = 255;
+		g = 0;
+		b = 255;
+		return;
+	case 4://orange
+		r = 255;
+		g = 127;
+		b = 0;
+		return;
+	case 5://cyan
+		r = 0;
+		g = 255;
+		b = 255;
+		return;
+	case 6://yellow
+		r = 255;
+		g = 255;
+		b = 0;
+		return;
+	}
 }

@@ -25,10 +25,12 @@ class SharedCollection
 		SharedObject * objectWithID(int);
 		void step();
 		vector<SharedObject*> objects;
+		static void setColorForIndex(int index, float & r, float & g, float & b);
+		pthread_mutex_t accessLock;
+
 	private:
 		int numTotalPoints();
 		vector<SharedObject*>::iterator positionOfObjectWithID(int);
-		
 		SharedObject * newObjectForTypeName(string&);
-		pthread_mutex_t accessLock;
+		int colorCounter;
 };

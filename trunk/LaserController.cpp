@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "LaserController.h"
+#include "MultiPointObject.h"
+
+#define NUM_OBJECTS 5
 
 LaserController::LaserController()
 {
@@ -13,7 +16,7 @@ LaserController::LaserController()
 	yMin = -8000;
 	yMax = 8000;
 
-	numPoints = 50;
+	numPoints = NUM_OBJECTS*(DEFAULT_POINTS*PTS_PER_COORD + 1);
 }
 
 bool LaserController::initLD()

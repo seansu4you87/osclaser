@@ -2,9 +2,6 @@
 #include "stdafx.h"
 #include "MultiPointObject.h"
 
-#define DEFAULT_POINTS 20
-#define PTS_PER_COORD 3
-
 MultiPointObject::MultiPointObject()
 {
 	numPoints = DEFAULT_POINTS*PTS_PER_COORD;
@@ -15,6 +12,13 @@ MultiPointObject::MultiPointObject()
 void MultiPointObject::step()
 {
 	//subclasses can animate
+}
+
+void MultiPointObject::setObjectColor(float r, float g, float b)
+{
+	this->r = r;
+	this->g = g;
+	this->b = b;
 }
 
 void MultiPointObject::rebuildPoints()
@@ -47,10 +51,14 @@ void MultiPointObject::rebuildPoints()
 			LaserPoint * currentPoint = points + i*PTS_PER_COORD;
 			float currentStep = (1.0*curPtIndex)/(ptsPerLine - 1);
 			SharedUtility::InterpolateBetween(cur->pt, next->pt, currentStep, currentPoint);
+			currentPoint->r = this->r;
+			currentPoint->g = this->g;
+			currentPoint->b = this->b;
 			for(int j = 1; j < PTS_PER_COORD; j++)
 			{
 				SharedUtility::CopyPointToPoint(currentPoint, currentPoint + j);
 			}
+			
 			ptsLeft--;
 			if(curPtIndex == ptsPerLine - 1)
 			{
@@ -78,6 +86,7 @@ void MultiPointObject::rebuildPoints()
 
 void MultiPointObject::addControlPoint(ControlPoint * newControlPoint)
 {
+	newControlPoint->setColor(points[0].r, points[0].g, points[0].b);
 	controlPoints.push_back(newControlPoint);
 }
 

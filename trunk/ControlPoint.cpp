@@ -10,6 +10,13 @@ ControlPoint::ControlPoint(float x, float y)
 	pt.f = 0;
 }
 
+void ControlPoint::setColor(float r, float g, float b)
+{
+	pt.r = r;
+	pt.g = g;
+	pt.b = b;
+}
+
 void ControlPoint::setCoords(float x, float y)
 {
 	pt.x = x;
