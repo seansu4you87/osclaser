@@ -42,6 +42,8 @@
 #include "SharedCollection.h"
 #include "SharedUtility.h"
 #include "LineObject.h"
+#include "ControlPoint.h"
+#include "MultiPointObject.h"
 
 //OSC stuff
 #include "IpEndpointName.h"

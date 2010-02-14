@@ -14,6 +14,9 @@ class OSCLaserController : public LaserController, public osc::OscPacketListener
 		void startListeningOnPort(int, OscPacketListener*);
 		SharedCollection collection;
 		virtual void step();
+		virtual void setPointsFromCollection();
 	protected:
 		virtual void ProcessMessage(const osc::ReceivedMessage&, const IpEndpointName&);
+		int lastNumObjects;
+		
 };

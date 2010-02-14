@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ControlPoint.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\IpEndpointName.cpp"
 				>
 			</File>
@@ -192,6 +196,10 @@
 			</File>
 			<File
 				RelativePath=".\LineObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MultiPointObject.cpp"
 				>
 			</File>
 			<File
@@ -265,6 +273,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ControlPoint.h"
+				>
+			</File>
+			<File
 				RelativePath=".\IpEndpointName.h"
 				>
 			</File>
@@ -286,6 +298,10 @@
 			</File>
 			<File
 				RelativePath=".\MessageMappingOscPacketListener.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MultiPointObject.h"
 				>
 			</File>
 			<File

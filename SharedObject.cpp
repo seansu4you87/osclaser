@@ -21,6 +21,16 @@ SharedObject::~SharedObject()
 	}
 }
 
+int SharedObject::getNumPoints()
+{
+	return numPoints;
+}
+
+LaserPoint * SharedObject::pointAt(int index)
+{
+	return points + index;
+}
+
 void SharedObject::step()
 {
 }
