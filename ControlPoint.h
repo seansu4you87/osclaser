@@ -9,4 +9,5 @@ class ControlPoint{
 		ControlPoint(float x, float y);
 		LaserPoint pt;
 		void setCoords(float x, float y);
+		void setColor(float r, float g, float b);
 };
