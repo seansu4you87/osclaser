@@ -2,7 +2,12 @@
 #include "LaserController.h"
 #include "MultiPointObject.h"
 
-#define NUM_OBJECTS 5
+#define NUM_OBJECTS 4
+
+#define X_MIN -8000
+#define X_MAX 8000
+#define Y_MIN -8000
+#define Y_MAX 8000
 
 LaserController::LaserController()
 {
@@ -18,6 +23,7 @@ LaserController::LaserController()
 
 	numPoints = NUM_OBJECTS*(DEFAULT_POINTS*PTS_PER_COORD + 1);
 }
+
 
 bool LaserController::initLD()
 {
@@ -45,6 +51,14 @@ bool LaserController::initLD()
     //DisplayWindowY(-100, 100);
     //DisplayWindowZ(-100, 100);
     SetLaserWindow((LONG)xMin, (LONG)xMax, (LONG)yMin, (LONG)yMax, 0);
+	
+	//these are the custom values for bounding
+	//we always initialize the window using -8000, 8000, and then use these
+	//to restrict the drawing
+	xMin = X_MIN;
+	xMax = X_MAX;
+	yMin = Y_MIN;
+	yMax = Y_MAX;
 
 	return true;
 }

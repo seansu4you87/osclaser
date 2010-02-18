@@ -4,7 +4,7 @@
 #include <vector>
 #include "ControlPoint.h"
 
-#define DEFAULT_POINTS 20
+#define DEFAULT_POINTS 60
 #define PTS_PER_COORD 3
 
 using namespace std;
